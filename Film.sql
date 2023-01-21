@@ -17,3 +17,21 @@ CREATE TABLE [dbo].[Film] (
 
 GO
 
+CREATE OR ALTER TRIGGER [dbo].[LiczbaFilmow]
+ON [dbo].[Film]
+FOR INSERT,DELETE,UPDATE
+AS
+
+BEGIN
+SET NOCOUNT ON
+	UPDATE Gatunek SET LiczbaFilmow = (
+		SELECT COUNT (*) FROM Film WHERE Film.GatunekID=Gatunek.GatunekID)
+		WHERE GatunekID IN
+			(
+				SELECT DISTINCT GatunekID FROM inserted
+				UNION
+				SELECT DISTINCT GatunekID FROM deleted
+			)
+END
+
+

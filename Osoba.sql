@@ -1,7 +1,7 @@
 CREATE TABLE [dbo].[Osoba] (
     [OsobaID]       INT            IDENTITY (1, 1) NOT NULL,
     [Imie]          NVARCHAR (150)     NULL,
-    [Nazwisko]      NVARCHAR (100)     NULL,
+    [Nazwisko]      NVARCHAR (300)     NULL,
     [KrajID]        INT            NULL,
     [DataUrodzenia] DATETIME       NULL,
     [Zdjecie]       VARBINARY (50) NULL,
